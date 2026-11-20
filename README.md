@@ -11,6 +11,7 @@ Instead of flooding your main agent's context window with raw `ls`, `grep`, `git
 1. **Main Agent (Cloud):** Handles high-level reasoning and planning.
 2. **Graphify (MCP):** Maps the codebase structure and locates relevant files without reading everything.
 3. **`local-exec` (MCP + Ollama):** Acts as the local "hands", running shell commands and returning concise extracted outputs.
+> **Zero-Token Graphify Setup:** Want to initialize Graphify, link your Markdown docs into `graph.json` at 0 token cost, or convert PDFs to Markdown for your agents? Check out my companion toolkit: [**`llm-workflow-utils`**](https://github.com/AdvisingDesert/llm-workflow-utils).
 
 ## Prerequisites
 
