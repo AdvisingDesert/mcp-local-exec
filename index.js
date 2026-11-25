@@ -3,6 +3,7 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import { exec } from "node:child_process";
 import { promisify } from "node:util";
 import { z } from "zod";
+import { pathToFileURL } from "node:url";
 
 const execAsync = promisify(exec);
 const OLLAMA_URL = process.env.OLLAMA_URL || "http://localhost:11434/api/chat";
@@ -18,7 +19,7 @@ const BLOCKED_PATTERNS = [
   /:\(\)\s*\{\s*:\s*\|\s*:\s*&\s*\}\s*;/
 ];
 
-function isCommandBlocked(cmd) {
+export function isCommandBlocked(cmd) {
   return BLOCKED_PATTERNS.some((pattern) => pattern.test(cmd));
 }
 
@@ -89,6 +90,13 @@ server.tool(
   {
     task: z.string().describe("Clear, self-contained objective to complete in the terminal"),
     cwd: z.string().describe("Absolute path of the working directory")
+  },
+  {
+    title: "Local Terminal Executor",
+    readOnlyHint: false,
+    destructiveHint: true,
+    idempotentHint: false,
+    openWorldHint: true
   },
   async ({ task, cwd }, extra) => {
     const signal = extra?.signal;
@@ -194,3 +202,10 @@ server.tool(
 
 const transport = new StdioServerTransport();
 await server.connect(transport);
+
+export { server };
+
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  const transport = new StdioServerTransport();
+  await server.connect(transport);
+}
