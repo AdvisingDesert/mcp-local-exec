@@ -1,5 +1,7 @@
 # mcp-local-exec
 
+[![M8ven Score](https://m8ven.ai/badge/mcp/advisingdesert-mcp-local-exec-7thtfx?v=6f120542456e1576d45bbe589e10d1bd)](https://m8ven.ai/mcp/advisingdesert-mcp-local-exec-7thtfx?s=readme)
+
 A lightweight **Model Context Protocol (MCP)** server that delegates shell/terminal tasks from a cloud reasoning agent (Antigravity, Claude Desktop, Claude Code, Cursor, etc.) to a **local LLM running on Ollama**.
 
 Instead of flooding your main agent's context window with raw `ls`, `grep`, `git diff`, or log outputs, `local-exec` runs a fast local sub-agent that executes up to 4 shell steps and returns only the clean, extracted data—drastically cutting token usage.
