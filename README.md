@@ -1,5 +1,7 @@
 # mcp-local-exec
 
+[![local-exec MCP server – quality and maintenance score on Glama](https://glama.ai/mcp/servers/AdvisingDesert/mcp-local-exec/badges/score.svg)](https://glama.ai/mcp/servers/AdvisingDesert/mcp-local-exec)
+
 [![M8ven Score](https://m8ven.ai/badge/mcp/advisingdesert-mcp-local-exec-7thtfx?v=6f120542456e1576d45bbe589e10d1bd)](https://m8ven.ai/mcp/advisingdesert-mcp-local-exec-7thtfx?s=readme)
 
 A lightweight **Model Context Protocol (MCP)** server that delegates shell/terminal tasks from a cloud reasoning agent (Antigravity, Claude Desktop, Claude Code, Cursor, etc.) to a **local LLM running on Ollama**.
