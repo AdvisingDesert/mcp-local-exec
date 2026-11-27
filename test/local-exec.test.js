@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { isCommandBlocked, server } from "../index.js";
 
-test("blocks destructive and privileged shell commands", () => {
+test("local_exec blocks destructive and privileged shell commands", () => {
   const dangerous = [
     "rm -rf /",
     "rm -fr ./dist",
@@ -16,7 +16,7 @@ test("blocks destructive and privileged shell commands", () => {
   }
 });
 
-test("allows safe read and inspection commands", () => {
+test("local_exec allows safe read and inspection commands", () => {
   const safe = [
     "ls -la",
     "git status -sb",
@@ -28,6 +28,9 @@ test("allows safe read and inspection commands", () => {
   }
 });
 
-test("exports configured MCP server instance", () => {
+test("registers local_exec tool on MCP server", () => {
   assert.ok(server, "MCP server should be defined");
+  if (server._registeredTools) {
+    assert.ok(server._registeredTools.local_exec, "local_exec tool should be registered");
+  }
 });
